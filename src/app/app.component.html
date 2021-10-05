@@ -11,11 +11,13 @@
 <mat-drawer-container class="container" autosize>
   <mat-drawer #drawer class="sidenav" mode="side">
     <mat-list>
-      <mat-list-item>Item 1</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>Item 2</mat-list-item>
-      <mat-divider></mat-divider>
-      <mat-list-item>Item 3</mat-list-item>
+      <ng-template ngFor let-item [ngForOf]="menu">
+        <mat-list-item>
+          <mat-icon mat-list-icon>{{item.icon}}</mat-icon>
+          <div mat-line>{{item.name}}</div>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </ng-template>
     </mat-list>
 
   </mat-drawer>

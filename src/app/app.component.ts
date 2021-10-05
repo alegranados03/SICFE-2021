@@ -23,17 +23,17 @@ export class AppComponent {
     {
       icon: 'card_travel',
       name: 'Menu Item 2',
-      url: '',
+      url: 'ruta2',
     },
     {
       icon: 'date_range',
       name: 'Menu Item 3',
-      url: '',
+      url: 'ruta3',
     },
     {
       icon: 'attach_money',
       name: 'Menu Item 4',
-      url: '',
+      url: 'ruta4',
     },
   ];
 

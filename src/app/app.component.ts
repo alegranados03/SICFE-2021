@@ -31,12 +31,12 @@ export class AppComponent {
       url: 'libro-diario',
     },
     {
-      icon: 'card_travel',
+      icon: 'assignent',
       name: 'Libro mayor',
       url: 'libro-mayor',
     },
     {
-      icon: 'date_range',
+      icon: 'card_travel',
       name: 'Estados Financieros',
       url: 'estados',
     },

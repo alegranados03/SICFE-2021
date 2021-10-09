@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { environment } from 'src/environments/environment';
 interface IMenuItem {
   icon: string;
   name: string;
@@ -12,7 +12,7 @@ interface IMenuItem {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'proyectosic';
+  title = environment.companyName;
   showFiller = false;
   menu: IMenuItem[] = [
     {

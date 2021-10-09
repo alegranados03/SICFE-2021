@@ -8,6 +8,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import {MatTreeModule} from '@angular/material/tree';
 import { InicioComponent } from './pages/inicio/inicio.component';
 import { CatalogoComponent } from './pages/catalogo/catalogo.component';
 import { LibroDiarioComponent } from './pages/libro-diario/libro-diario.component';
@@ -34,6 +35,7 @@ import { BalanceGeneralComponent } from './pages/balance-general/balance-general
     MatToolbarModule,
     MatIconModule,
     MatListModule,
+    MatTreeModule
   ],
   providers: [],
   bootstrap: [AppComponent],

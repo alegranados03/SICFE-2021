@@ -16,24 +16,39 @@ export class AppComponent {
   showFiller = false;
   menu: IMenuItem[] = [
     {
-      icon: 'assignment',
-      name: 'Menu Item 1',
+      icon: 'home',
+      name: 'Inicio',
       url: '',
     },
     {
+      icon: 'assignment',
+      name: 'Catálogo de cuentas',
+      url: 'catalogo',
+    },
+    {
+      icon: 'assignment',
+      name: 'Libro Diario',
+      url: 'libro-diario',
+    },
+    {
       icon: 'card_travel',
-      name: 'Menu Item 2',
-      url: 'ruta2',
+      name: 'Libro mayor',
+      url: 'libro-mayor',
     },
     {
       icon: 'date_range',
-      name: 'Menu Item 3',
-      url: 'ruta3',
+      name: 'Estados Financieros',
+      url: 'estados',
     },
     {
       icon: 'attach_money',
-      name: 'Menu Item 4',
-      url: 'ruta4',
+      name: 'Balance de Comprobación',
+      url: 'balance-comprobacion',
+    },
+    {
+      icon: 'attach_money',
+      name: 'Balance General',
+      url: 'balance-general',
     },
   ];
 

@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./libro-mayor.component.scss']
 })
 export class LibroMayorComponent implements OnInit {
-
+  cuentas: any[] = [{},{},{},{},{},{},{},{}];
   constructor() { }
 
   ngOnInit(): void {

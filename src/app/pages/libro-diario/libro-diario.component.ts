@@ -3,13 +3,13 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-libro-diario',
   templateUrl: './libro-diario.component.html',
-  styleUrls: ['./libro-diario.component.scss']
+  styleUrls: ['./libro-diario.component.scss'],
 })
 export class LibroDiarioComponent implements OnInit {
 
-  constructor() { }
+  transacciones: any[] = [{},{},{},{},{},{},{},{}];
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }

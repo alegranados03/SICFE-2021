@@ -1,1 +1,24 @@
-<p>libro-mayor works!</p>
+<h1 style="margin-top:1em;">Libro mayor</h1>
+<mat-accordion class="headers-align" multi style="padding:2em;">
+  <mat-expansion-panel *ngFor="let ob of cuentas">
+    <mat-expansion-panel-header>
+      <mat-panel-title> Cuenta tal </mat-panel-title>
+      <mat-panel-description>
+        Extender para ver Transacciones
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <!--AQUI EL INNER-->
+    <mat-accordion class="headers-align" multi>
+      <mat-expansion-panel *ngFor="let ob of cuentas">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Transacción </mat-panel-title>
+          <mat-panel-description>
+            El motivo de la transacción
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        CONTENIDO INTERNO
+      </mat-expansion-panel>
+    </mat-accordion>
+    <!--FIN DEL INNER-->
+  </mat-expansion-panel>
+</mat-accordion>

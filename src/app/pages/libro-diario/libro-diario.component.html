@@ -1,1 +1,24 @@
-<p>libro-diario works!</p>
+<h1 style="margin-top:1em;">Libro diario Octubre</h1>
+<mat-accordion class="headers-align" multi style="padding:2em;">
+  <mat-expansion-panel *ngFor="let ob of transacciones">
+    <mat-expansion-panel-header>
+      <mat-panel-title> Transacciones del día: 01-12-2020</mat-panel-title>
+      <mat-panel-description>
+        Extender para ver transacciones
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <!--AQUI EL INNER-->
+    <mat-accordion class="headers-align" multi>
+      <mat-expansion-panel *ngFor="let ob of transacciones">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Personal data </mat-panel-title>
+          <mat-panel-description>
+            Type your name and age
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        CONTENIDO INTERNO
+      </mat-expansion-panel>
+    </mat-accordion>
+    <!--FIN DEL INNER-->
+  </mat-expansion-panel>
+</mat-accordion>

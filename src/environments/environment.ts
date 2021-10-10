@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  companyName:'RedInServe'
+  companyName:'RedInServe',
+  apiRoute:'http://localhost:8000/api/'
 };
 
 /*

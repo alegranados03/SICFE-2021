@@ -12,7 +12,7 @@
           This padding value depends on the mat-icon-button width. -->
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
       <p style="margin-left: 1em; margin-bottom: 0">
-        {{ node.numero }}-{{ node.nombre }}
+        {{ node.numero_cuenta }} - {{ node.nombre_cuenta }}
       </p>
     </mat-tree-node>
     <!-- This is the tree node template for expandable nodes -->
@@ -21,7 +21,7 @@
         <button
           mat-icon-button
           matTreeNodeToggle
-          [attr.aria-label]="'Toggle ' + node.name"
+          [attr.aria-label]="'Toggle ' + node.nombre_cuenta"
         >
           <mat-icon class="mat-icon-rtl-mirror">
             {{
@@ -32,7 +32,7 @@
           </mat-icon>
         </button>
         <p style="margin-left: 1em; margin-bottom: 0">
-          {{ node.numero }}-{{ node.nombre }}
+          {{ node.numero_cuenta }} - {{ node.nombre_cuenta }}
         </p>
       </div>
       <!-- There is inline padding applied to this div using styles.
@@ -45,7 +45,6 @@
       </div>
     </mat-nested-tree-node>
   </mat-tree>
-
   <h2 class="list-header">Pasivos</h2>
   <mat-tree
     [dataSource]="cuentasPasivo"
@@ -54,7 +53,7 @@
   >
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
       <p style="margin-left: 1em; margin-bottom: 0">
-        {{ node.numero }}-{{ node.nombre }}
+        {{ node.numero_cuenta }} - {{ node.nombre_cuenta }}
       </p>
     </mat-tree-node>
     <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
@@ -62,7 +61,7 @@
         <button
           mat-icon-button
           matTreeNodeToggle
-          [attr.aria-label]="'Toggle ' + node.name"
+          [attr.aria-label]="'Toggle ' + node.nombre_cuenta"
         >
           <mat-icon class="mat-icon-rtl-mirror">
             {{
@@ -73,7 +72,7 @@
           </mat-icon>
         </button>
         <p style="margin-left: 1em; margin-bottom: 0">
-          {{ node.numero }}-{{ node.nombre }}
+          {{ node.numero_cuenta }} - {{ node.nombre_cuenta }}
         </p>
       </div>
       <div
@@ -93,7 +92,7 @@
   >
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
       <p style="margin-left: 1em; margin-bottom: 0">
-        {{ node.numero }}-{{ node.nombre }}
+        {{ node.numero_cuenta }} - {{ node.nombre_cuenta }}
       </p>
     </mat-tree-node>
 
@@ -105,7 +104,7 @@
         <button
           mat-icon-button
           matTreeNodeToggle
-          [attr.aria-label]="'Toggle ' + node.name"
+          [attr.aria-label]="'Toggle ' + node.nombre_cuenta"
         >
           <mat-icon class="mat-icon-rtl-mirror">
             {{
@@ -116,7 +115,7 @@
           </mat-icon>
         </button>
         <p style="margin-left: 1em; margin-bottom: 0">
-          {{ node.numero }}-{{ node.nombre }}
+          {{ node.numero_cuenta }} - {{ node.nombre_cuenta }}
         </p>
       </div>
       <div

@@ -16,6 +16,7 @@ import { LibroMayorComponent } from './pages/libro-mayor/libro-mayor.component';
 import { BalanceComprobacionComponent } from './pages/balance-comprobacion/balance-comprobacion.component';
 import { EstadosComponent } from './pages/estados/estados.component';
 import { BalanceGeneralComponent } from './pages/balance-general/balance-general.component';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { BalanceGeneralComponent } from './pages/balance-general/balance-general
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatSidenavModule,
     MatToolbarModule,

@@ -31,7 +31,7 @@ export class AppComponent {
       url: 'libro-diario',
     },
     {
-      icon: 'assignent',
+      icon: 'assignment',
       name: 'Libro mayor',
       url: 'libro-mayor',
     },

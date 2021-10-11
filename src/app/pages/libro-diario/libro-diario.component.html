@@ -1,7 +1,7 @@
 <h1 style="margin-top: 1em">Libro diario Octubre</h1>
 <mat-accordion class="headers-align" multi style="padding: 2em">
   <mat-expansion-panel *ngFor="let libro of libroDiario">
-    <!-- cambia a fecha-->
+
     <mat-expansion-panel-header>
       <mat-panel-title> Transacciones del día: {{libro.fecha | date}}</mat-panel-title>
       <mat-panel-description>

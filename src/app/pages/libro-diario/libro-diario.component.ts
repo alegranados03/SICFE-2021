@@ -20,7 +20,6 @@ export class LibroDiarioComponent implements OnInit {
   ngOnInit(): void {
     this.apiService.getLibroDiario().subscribe((response) => {
       if (response.fechas) {
-        console.log("responsee",response);
         this.procesarTransacciones(response);
       }
     });
@@ -37,7 +36,5 @@ export class LibroDiarioComponent implements OnInit {
         transacciones: response.fechas[key],
       });
     }
-
-    console.log("ya procesado",this.libroDiario);
   }
 }

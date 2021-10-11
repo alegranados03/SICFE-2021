@@ -1,22 +1,78 @@
-<h1 style="margin-top:1em;">Libro diario Octubre</h1>
-<mat-accordion class="headers-align" multi style="padding:2em;">
-  <mat-expansion-panel *ngFor="let ob of transacciones">
+<h1 style="margin-top: 1em">Libro diario Octubre</h1>
+<mat-accordion class="headers-align" multi style="padding: 2em">
+  <mat-expansion-panel *ngFor="let libro of libroDiario">
+    <!-- cambia a fecha-->
     <mat-expansion-panel-header>
-      <mat-panel-title> Transacciones del día: 01-12-2020</mat-panel-title>
+      <mat-panel-title> Transacciones del día: {{libro.fecha | date}}</mat-panel-title>
       <mat-panel-description>
         Extender para ver transacciones
       </mat-panel-description>
     </mat-expansion-panel-header>
     <!--AQUI EL INNER-->
     <mat-accordion class="headers-align" multi>
-      <mat-expansion-panel *ngFor="let ob of transacciones">
+      <mat-expansion-panel *ngFor="let tran of libro.transacciones">
         <mat-expansion-panel-header>
-          <mat-panel-title> Personal data </mat-panel-title>
+          <mat-panel-title> {{ tran.descripcion }}</mat-panel-title>
           <mat-panel-description>
-            Type your name and age
+            Extender para ver movimientos ({{ tran.movimientos?.length }})
           </mat-panel-description>
         </mat-expansion-panel-header>
-        CONTENIDO INTERNO
+        <!--INICIO INNER-->
+        <table
+          mat-table
+          [dataSource]="createDataSource(tran.movimientos!)"
+          matSort
+          class="mat-elevation-z8"
+        >
+          <!-- Id Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              No. Movimiento
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.id }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="cuenta">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Nombre Cuenta
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.cuenta.nombre_cuenta }}
+            </td>
+          </ng-container>
+
+          <!-- Debe Column -->
+          <ng-container matColumnDef="debe">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Debe</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.debe | currency }}
+            </td>
+          </ng-container>
+
+          <!-- Haber Column -->
+          <ng-container matColumnDef="haber">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Haber</th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.haber | currency }}
+            </td>
+          </ng-container>
+
+          <!-- Created Column -->
+          <ng-container matColumnDef="created_at">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              Fecha registro
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.created_at | date }}
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+        <!--FIN DEL INNER-->
       </mat-expansion-panel>
     </mat-accordion>
     <!--FIN DEL INNER-->

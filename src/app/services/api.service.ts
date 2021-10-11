@@ -1,16 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { ResponseCuentas } from '../interfaces/cuentas.interface';
+import {
+  ResponseCuentas,
+  ResponseTransaccionesPorFecha,
+} from '../interfaces/cuentas.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService {
   url = environment.apiRoute;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getCatalogo(){
+  getCatalogo() {
     return this.http.get<ResponseCuentas>(`${this.url}cuentas`);
+  }
+
+  getLibroMayor() {
+    return this.http.get<ResponseCuentas>(`${this.url}cuentas/libroMayor`);
+  }
+  getLibroDiario() {
+    return this.http.get<ResponseTransaccionesPorFecha>(
+      `${this.url}transacciones`
+    );
   }
 }

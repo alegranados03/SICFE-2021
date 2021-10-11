@@ -18,6 +18,7 @@ import { BalanceComprobacionComponent } from './pages/balance-comprobacion/balan
 import { EstadosComponent } from './pages/estados/estados.component';
 import { BalanceGeneralComponent } from './pages/balance-general/balance-general.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MatTableModule } from '@angular/material/table';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +41,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatListModule,
     MatTreeModule,
     MatExpansionModule,
+    MatTableModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

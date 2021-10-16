@@ -19,6 +19,7 @@ import { EstadosComponent } from './pages/estados/estados.component';
 import { BalanceGeneralComponent } from './pages/balance-general/balance-general.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
+import {MatTabsModule} from '@angular/material/tabs';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,6 +43,7 @@ import { MatTableModule } from '@angular/material/table';
     MatTreeModule,
     MatExpansionModule,
     MatTableModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

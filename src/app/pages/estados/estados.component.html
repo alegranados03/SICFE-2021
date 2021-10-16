@@ -1,1 +1,75 @@
-<p>estados works!</p>
+<mat-tab-group dynamicHeight>
+  <mat-tab  label="Estado de Resultados">
+    <h1 style="margin-top: 1.2em; margin-bottom: 1.5em">
+      Estado de Resultados
+    </h1>
+    <table
+      mat-table
+      [dataSource]="tablaResultado"
+      class="mat-elevation-z8 demo-table"
+    >
+      <ng-container matColumnDef="cuenta">
+        <th mat-header-cell *matHeaderCellDef>No.</th>
+        <td mat-cell *matCellDef="let element">{{ element.numero_cuenta }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef>Cuenta</th>
+        <td mat-cell *matCellDef="let element">{{ element.nombre_cuenta }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="saldo_deudor">
+        <th mat-header-cell *matHeaderCellDef>Saldo Deudor</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.debe | currency }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="saldo_acreedor">
+        <th mat-header-cell *matHeaderCellDef>Saldo Acreedor</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.haber | currency }}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </mat-tab>
+  <mat-tab label="Estado de Capital">
+    <h1 style="margin-top: 1.2em; margin-bottom: 1.5em">Estado de Capital</h1>
+
+    <table
+      mat-table
+      [dataSource]="tablaCapital"
+      class="mat-elevation-z8 demo-table"
+    >
+      <ng-container matColumnDef="cuenta">
+        <th mat-header-cell *matHeaderCellDef>No.</th>
+        <td mat-cell *matCellDef="let element">{{ element.numero_cuenta }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef>Cuenta</th>
+        <td mat-cell *matCellDef="let element">{{ element.nombre_cuenta }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="saldo_deudor">
+        <th mat-header-cell *matHeaderCellDef>Saldo Deudor</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.debe | currency }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="saldo_acreedor">
+        <th mat-header-cell *matHeaderCellDef>Saldo Acreedor</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.haber | currency }}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </mat-tab>
+</mat-tab-group>

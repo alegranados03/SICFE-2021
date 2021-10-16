@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { MatDrawer } from '@angular/material/sidenav';
 import { environment } from 'src/environments/environment';
 interface IMenuItem {
   icon: string;
@@ -11,9 +12,9 @@ interface IMenuItem {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   title = environment.companyName;
-  showFiller = false;
+  @ViewChild('drawer') drawer!: MatDrawer;
   menu: IMenuItem[] = [
     {
       icon: 'home',
@@ -52,4 +53,7 @@ export class AppComponent {
     },
   ];
 
+  ngAfterViewInit() {
+    setTimeout(() => this.drawer.toggle(), 0);
+  }
 }

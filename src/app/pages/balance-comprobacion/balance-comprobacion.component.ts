@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Cuenta } from 'src/app/interfaces/cuentas.interface';
+import { ApiService } from 'src/app/services/api.service';
 
 export interface PeriodicElement {
   name: string;
@@ -7,31 +9,66 @@ export interface PeriodicElement {
   symbol: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
-
+interface TableRow {
+  numero_cuenta: string;
+  nombre_cuenta: string;
+  debe: number;
+  haber: number;
+}
 @Component({
   selector: 'app-balance-comprobacion',
   templateUrl: './balance-comprobacion.component.html',
-  styleUrls: ['./balance-comprobacion.component.scss']
+  styleUrls: ['./balance-comprobacion.component.scss'],
 })
 export class BalanceComprobacionComponent implements OnInit {
-
-  displayedColumns: string[] = ['cuenta', 'nombre', 'saldo_deudor', 'saldo_acreedor'];
-  dataSource = ELEMENT_DATA;
-  constructor() { }
+  displayedColumns: string[] = [
+    'cuenta',
+    'nombre',
+    'saldo_deudor',
+    'saldo_acreedor',
+  ];
+  cuentas: Cuenta[] = [];
+  tablaCuentas: TableRow[] = [];
+  constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
+    this.apiService.getBalanceComprobacion().subscribe((response) => {
+      if (response.cuentas) {
+        this.cuentas = response.cuentas.filter(
+          (cuenta) => cuenta.movimientos!.length > 0
+        );
+
+        const resumen: TableRow = {
+          numero_cuenta: '',
+          nombre_cuenta: 'Total',
+          debe: 0,
+          haber: 0,
+        };
+        
+        this.transformData();
+
+        this.tablaCuentas.forEach((cuenta) => {
+          if (cuenta) {
+            resumen.debe += cuenta.debe,
+            resumen.haber += cuenta.haber
+          }
+        });
+
+        resumen.debe = +resumen.debe.toFixed(2);
+        resumen.haber = +resumen.haber.toFixed(2);
+        this.tablaCuentas.push(resumen);
+      }
+    });
   }
 
+  transformData() {
+    this.tablaCuentas = this.cuentas.map((cuenta): TableRow => {
+      return {
+        numero_cuenta: cuenta.numero_cuenta,
+        nombre_cuenta: cuenta.nombre_cuenta,
+        debe: +cuenta.total_debe?.toFixed(2)!,
+        haber: +cuenta.total_haber?.toFixed(2)!,
+      };
+    });
+  }
 }

@@ -25,4 +25,9 @@ export class ApiService {
       `${this.url}transacciones`
     );
   }
+  getBalanceComprobacion() {
+    return this.http.get<ResponseCuentas>(
+      `${this.url}cuentas/balanceComprobacion`
+    );
+  }
 }

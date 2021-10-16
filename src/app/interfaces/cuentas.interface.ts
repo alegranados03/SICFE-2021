@@ -2,8 +2,8 @@ export interface Movimiento {
   id: number;
   transaccion_id: number;
   cuenta_id: number;
-  debe: string;
-  haber: string;
+  debe: number;
+  haber: number;
   created_at: Date | null;
   updated_at: Date | null;
   cuenta?: Cuenta;
@@ -14,8 +14,10 @@ export interface Cuenta {
   numero_cuenta: string;
   nombre_cuenta: string;
   padre_id: number | null;
-  debe: string;
-  haber: string;
+  debe: number;
+  haber: number;
+  total_debe?:number;
+  total_haber?:number;
   tipo_id: number;
   created_at: null;
   updated_at: null;
@@ -25,8 +27,8 @@ export interface Cuenta {
 
 export interface Transaccion {
   id: number;
-  total_debe: string;
-  total_haber: string;
+  total_debe: number;
+  total_haber: number;
   descripcion: string;
   created_at: Date;
   updated_at: null;

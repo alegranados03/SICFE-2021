@@ -1,80 +1,211 @@
-<h1 style="margin-top: 1em">Libro diario Octubre</h1>
-<mat-accordion class="headers-align" multi style="padding: 2em">
-  <mat-expansion-panel *ngFor="let libro of libroDiario">
-
-    <mat-expansion-panel-header>
-      <mat-panel-title> Transacciones del día: {{libro.fecha | date}}</mat-panel-title>
-      <mat-panel-description>
-        Extender para ver transacciones
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <!--AQUI EL INNER-->
-    <mat-accordion class="headers-align" multi>
-      <mat-expansion-panel *ngFor="let tran of libro.transacciones">
+<mat-tab-group
+  dynamicHeight
+  [selectedIndex]="tabIndex"
+  (selectedIndexChange)="setIndexTab($event)"
+>
+  <mat-tab label="Libro diario">
+    <h1 class="title">Libro diario Octubre</h1>
+    <mat-accordion class="headers-align" multi style="padding: 2em">
+      <mat-expansion-panel *ngFor="let libro of libroDiario">
         <mat-expansion-panel-header>
-          <mat-panel-title> {{ tran.descripcion }}</mat-panel-title>
+          <mat-panel-title>
+            Transacciones del día: {{ libro.fecha | date }}</mat-panel-title
+          >
           <mat-panel-description>
-            Extender para ver movimientos ({{ tran.movimientos?.length }})
+            Extender para ver transacciones
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <!--INICIO INNER-->
-        <table
-          mat-table
-          [dataSource]="createDataSource(tran.movimientos!)"
-          matSort
-          class="mat-elevation-z8"
-        >
-          <!-- Id Column -->
-          <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>
-              No. Movimiento
-            </th>
-            <td mat-cell *matCellDef="let element">
-              {{ element.id }}
-            </td>
-          </ng-container>
+        <!--AQUI EL INNER-->
+        <mat-accordion class="headers-align" multi>
+          <mat-expansion-panel *ngFor="let tran of libro.transacciones">
+            <mat-expansion-panel-header>
+              <mat-panel-title> {{ tran.descripcion }}</mat-panel-title>
+              <mat-panel-description>
+                Extender para ver movimientos ({{ tran.movimientos?.length }})
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <!--INICIO INNER-->
+            <table
+              mat-table
+              [dataSource]="createDataSource(tran.movimientos!)"
+              matSort
+              class="mat-elevation-z8"
+            >
+              <!-- Id Column -->
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  No. Movimiento
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.id }}
+                </td>
+              </ng-container>
 
-          <ng-container matColumnDef="cuenta">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>
-              Nombre Cuenta
-            </th>
-            <td mat-cell *matCellDef="let element">
-              {{ element.cuenta.nombre_cuenta }}
-            </td>
-          </ng-container>
+              <ng-container matColumnDef="cuenta">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Nombre Cuenta
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.cuenta.nombre_cuenta }}
+                </td>
+              </ng-container>
 
-          <!-- Debe Column -->
-          <ng-container matColumnDef="debe">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Debe</th>
-            <td mat-cell *matCellDef="let element">
-              {{ element.debe | currency }}
-            </td>
-          </ng-container>
+              <!-- Debe Column -->
+              <ng-container matColumnDef="debe">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Debe</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.debe | currency }}
+                </td>
+              </ng-container>
 
-          <!-- Haber Column -->
-          <ng-container matColumnDef="haber">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>Haber</th>
-            <td mat-cell *matCellDef="let element">
-              {{ element.haber | currency }}
-            </td>
-          </ng-container>
+              <!-- Haber Column -->
+              <ng-container matColumnDef="haber">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Haber</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.haber | currency }}
+                </td>
+              </ng-container>
 
-          <!-- Created Column -->
-          <ng-container matColumnDef="created_at">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header>
-              Fecha registro
-            </th>
-            <td mat-cell *matCellDef="let element">
-              {{ element.created_at | date }}
-            </td>
-          </ng-container>
+              <!-- Created Column -->
+              <ng-container matColumnDef="created_at">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                  Fecha registro
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.created_at | date }}
+                </td>
+              </ng-container>
 
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-        </table>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+            </table>
+            <!--FIN DEL INNER-->
+          </mat-expansion-panel>
+        </mat-accordion>
         <!--FIN DEL INNER-->
       </mat-expansion-panel>
     </mat-accordion>
-    <!--FIN DEL INNER-->
-  </mat-expansion-panel>
-</mat-accordion>
+  </mat-tab>
+  <mat-tab label="Agregar transacción">
+    <h1 class="title">Agregar transacción</h1>
+    <form [formGroup]="transaccionForm" (ngSubmit)="onSubmit()">
+      <!---->
+      <ng-container formArrayName="movimientos">
+        <ng-container
+          *ngFor="let movimientoForm of movimientos.controls; let i = index"
+        >
+          <mat-card style="margin-bottom: 1em">
+            <button
+              *ngIf="i > 1"
+              class="delete-button"
+              mat-raised-button
+              color="warn"
+              type="button"
+              (click)="removeMovimiento(i)"
+            >
+              X
+            </button>
+            <mat-card-title>Movimiento {{ i + 1 }}</mat-card-title>
+            <mat-card-content>
+              <div
+                style="width: 100%"
+                [formGroup]="toFormGroup(movimientoForm)"
+              >
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Fecha de registro</mat-label>
+                  <input
+                    matInput
+                    [matDatepicker]="picker"
+                    formControlName="fecha"
+                    autocomplete="off"
+                  />
+                  <mat-datepicker-toggle matSuffix [for]="picker">
+                    <mat-icon matDatepickerToggleIcon
+                      >keyboard_arrow_down</mat-icon
+                    >
+                  </mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Cuenta a modificar</mat-label>
+                  <mat-select formControlName="cuenta" name="food">
+                    <mat-option
+                      *ngFor="let cuenta of cuentas"
+                      [value]="cuenta.id"
+                      [disabled]="cuenta.id === 31 || cuenta.id === 94"
+                    >
+                      {{ cuenta.numero_cuenta }} - {{ cuenta.nombre_cuenta }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Concepto</mat-label>
+                  <input
+                    matInput
+                    placeholder="Ej: Compra de ..."
+                    value=""
+                    formControlName="concepto"
+                    autocomplete="off"
+                  />
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Monto en dólares</mat-label>
+                  <input
+                    matInput
+                    type="number"
+                    step="0.01"
+                    value="0.00"
+                    min="0"
+                    formControlName="monto"
+                    autocomplete="off"
+                  />
+                </mat-form-field>
+
+                <label
+                  for="lado"
+                  style="display: inline-block; margin-bottom: 1em"
+                  >El monto en la cuenta se
+                </label>
+                <mat-radio-group formControlName="lado">
+                  <mat-radio-button value="debe">Cargará</mat-radio-button>
+                  <mat-radio-button value="haber">Abonará</mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </ng-container>
+      </ng-container>
+      <!-- -->
+      <div style="display: flex; flex-direction: row; padding: 1em 0">
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="transaccionForm.invalid"
+        >
+          Enviar
+        </button>
+        <button
+          style="margin-right: 8px; margin-left: auto"
+          mat-raised-button
+          color="primary"
+          type="button"
+          (click)="addMovimiento()"
+        >
+          Agregar Movimiento
+        </button>
+        <button
+          mat-raised-button
+          color="accent"
+          type="button"
+          (click)="onCancel()"
+        >
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </mat-tab>
+</mat-tab-group>

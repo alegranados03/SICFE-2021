@@ -17,6 +17,9 @@ export class ApiService {
   getCatalogo() {
     return this.http.get<ResponseCuentas>(`${this.url}cuentas`);
   }
+  getListaCuentas() {
+    return this.http.get<ResponseCuentas>(`${this.url}cuentas/listaCuentasCompleta`);
+  }
 
   getLibroMayor() {
     return this.http.get<ResponseCuentas>(`${this.url}cuentas/libroMayor`);

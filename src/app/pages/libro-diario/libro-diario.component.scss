@@ -4,6 +4,9 @@
   padding: 0 4em;
 }
 
+.title{
+  margin-top: 1em;
+}
 .action-buttons {
   padding-bottom: 20px;
 }
@@ -32,4 +35,29 @@ th.mat-sort-header-sorted {
 
 td {
   text-align: left;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+
+mat-radio-group {
+  display: block;
+  margin-bottom: 2em;
+}
+
+.delete-button {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
